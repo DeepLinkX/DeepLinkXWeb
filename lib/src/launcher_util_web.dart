@@ -1,4 +1,6 @@
 import 'package:deeplink_x_platform_interface/deeplink_x_platform_interface.dart';
+// ignore: depend_on_referenced_packages
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 /// A utility class for launching applications and handling intents on Web.
@@ -8,6 +10,12 @@ import 'package:url_launcher/url_launcher.dart' as url_launcher;
 /// for launching URLs and applications. It currently throws an error for
 /// methods that are not implemented on the Web platform.
 class LauncherUtilWeb extends LauncherUtilPlatform {
+
+  /// Registers this class as the default instance of [LauncherUtilWeb].
+  static void registerWith(final Registrar registrar) {
+    LauncherUtilPlatform.instance = LauncherUtilWeb();
+  }
+
   @override
   Future<bool> launchUrl(final Uri uri) async =>
       url_launcher.launchUrl(uri, mode: url_launcher.LaunchMode.externalApplication);
