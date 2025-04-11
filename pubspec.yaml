@@ -1,6 +1,6 @@
 name: deeplink_x_web
 description: "Web implementation of the deeplink_x plugin."
-version: 0.0.1
+version: 0.0.2
 
 repository: https://github.com/DeeplinkX/DeeplinkXWeb
 
@@ -13,6 +13,7 @@ dependencies:
     sdk: flutter
   deeplink_x_platform_interface: ^0.0.4
   url_launcher: ^6.1.0
+  web: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -25,4 +26,6 @@ flutter:
     implements: deeplink_x
     platforms:
       web:
-        dartPluginClass: DeeplinkXWeb
+        dartPluginClass: LauncherUtilLinux
+        fileName: "deeplink_x_web.dart"
+        pluginClass: LauncherUtilWeb
