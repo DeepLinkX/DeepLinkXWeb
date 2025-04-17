@@ -1,5 +1,4 @@
 import 'package:deeplink_x_platform_interface/deeplink_x_platform_interface.dart';
-// ignore: depend_on_referenced_packages
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
@@ -10,7 +9,6 @@ import 'package:url_launcher/url_launcher.dart' as url_launcher;
 /// for launching URLs and applications. It currently throws an error for
 /// methods that are not implemented on the Web platform.
 class LauncherUtilWeb extends LauncherUtilPlatform {
-
   /// Registers this class as the default instance of [LauncherUtilWeb].
   static void registerWith(final Registrar registrar) {
     LauncherUtilPlatform.instance = LauncherUtilWeb();
@@ -21,20 +19,20 @@ class LauncherUtilWeb extends LauncherUtilPlatform {
       url_launcher.launchUrl(uri, mode: url_launcher.LaunchMode.externalApplication);
 
   @override
-  Future<void> launchApp(final String scheme) async =>
+  Future<bool> launchAppByScheme(final String scheme) async =>
       url_launcher.launchUrl(Uri.parse('$scheme://'), mode: url_launcher.LaunchMode.externalApplication);
 
   @override
-  Future<bool> isAppInstalled(final String scheme) async => url_launcher.canLaunchUrl(Uri.parse('$scheme://'));
+  Future<bool> isAppInstalledByScheme(final String scheme) async => url_launcher.canLaunchUrl(Uri.parse('$scheme://'));
 
   @override
-  Future<bool> isAndroidAppInstalled(final String packageName) async {
-    throw UnimplementedError('isAndroidAppInstalled() not implemented on this platform.');
+  Future<bool> isAppInstalledByPackageName(final String packageName) async {
+    throw UnimplementedError('isAppInstalledByPackageName() not implemented on this platform.');
   }
 
   @override
-  Future<void> launchAndroidApp(final String packageName) async {
-    throw UnimplementedError('launchAndroidApp() not implemented on this platform.');
+  Future<bool> launchAppByPackageName(final String packageName) async {
+    throw UnimplementedError('launchAppByPackageName() not implemented on this platform.');
   }
 
   @override
